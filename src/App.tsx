@@ -1,50 +1,70 @@
 import './App.css'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+//definition api response sction; section is aJSON format object
+interface Section {
+  id: number
+  gender: string
+  total: number
+  available: number
+  occupied: number
+  disabled_rooms: number
+}
+
+function fetchSections(): Promise<Section[]> {
+  return fetch('http://localhost:8081/showerrooms').then((res) => res.json())
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [sections, setSections] = useState<Section[]>([])
+  let eventSource: EventSource
+  useEffect(() => {
+    console.log('fetching data')
+    fetchSections().then((data) => setSections(data))
+    eventSource = new EventSource('http://localhost:8081/events')
+
+    eventSource.onmessage = (event) => {
+      const data = JSON.parse(event.data)
+      console.log(data)
+      fetchSections().then((data) => setSections(data))
+    }
+
+    return () => {
+      eventSource.close()
+    }
+  }, [])
 
   return (
     <div className="App" data-testid="app-page">
-      <header className="App-header">
-        <p className="header">
-          🚀 Vite + React + Typescript + React Testing Library 🤘 <br />& Eslint
-          🔥+ Prettier
-        </p>
-
-        <div className="body">
-          <button onClick={() => setCount((count) => count + 1)}>
-            🪂 Click me : {count}
-          </button>
-
-          <p>
-            {' '}
-            Don&apos;t forgot to install Eslint and Prettier in Your Vscode.
-          </p>
-
-          <p>
-            Mess up the code in <code>App.tsx </code> and save the file.
-          </p>
-          <p>
-            <a
-              className="App-link"
-              href="https://reactjs.org"
-              target="_blank"
-              rel="noopener noreferrer">
-              Learn React
-            </a>
-            {' | '}
-            <a
-              className="App-link"
-              href="https://vitejs.dev/guide/features.html"
-              target="_blank"
-              rel="noopener noreferrer">
-              Vite Docs
-            </a>
-          </p>
-        </div>
-      </header>
+      <div className="section-container">
+        {sections
+          .filter((section) => section.gender === 'male')
+          .map((section) => (
+            <>
+              <section className="section male">
+                gender: {section.gender}
+                total: {section.total}
+                available: {section.available}
+                occupied: {section.occupied}
+                disabled_rooms: {section.disabled_rooms}
+              </section>
+            </>
+          ))}
+        {sections
+          .filter((section) => section.gender === 'female')
+          .map((section) => (
+            <>
+              <section className="section male">
+                gender: {section.gender}
+                total: {section.total}
+                available: {section.available}
+                occupied: {section.occupied}
+                disabled_rooms: {section.disabled_rooms}
+              </section>
+            </>
+          ))}
+      </div>
     </div>
   )
 }

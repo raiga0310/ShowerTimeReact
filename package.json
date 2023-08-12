@@ -2,7 +2,7 @@
   "name": "ShowerTimeReact",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --port 5173",
     "build": "tsc && vite build",
     "serve": "vite preview",
     "type-check": "tsc",
