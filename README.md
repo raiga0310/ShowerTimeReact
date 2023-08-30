@@ -6,7 +6,7 @@
 $ git clone https://github.com/raiga0310/ShowerTimeReact.git
 $ cd ShowerTimeReact
 $ yarn install
-$ yarn start
+$ yarn serve
 ```
 
 ## Usage
