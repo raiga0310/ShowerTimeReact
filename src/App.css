@@ -9,10 +9,52 @@
   text-align: center;
 }
 
+.App .section-container {
+  display: flex;
+  flex: 5 3;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
 .App .section {
   padding: 20px;
   margin: 20px;
   border: 1px solid var(--primay);
   border-radius: 5px;
   background-color: var(--bg-primay);
+}
+
+.App .title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primay);
+}
+
+.description h3 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--primay);
+}
+
+.description .icon-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+}
+
+.icon-container p {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--primay);
+}
+
+.footer {
+  background-color: whitesmoke;
+  font-size: 1.5em;
+  border-radius: 1.5em;
+  padding: 1em;
+  margin: 1em;
 }
