@@ -4,8 +4,9 @@
   "scripts": {
     "dev": "vite --port 5173",
     "build": "tsc && vite build",
-    "serve": "vite preview",
+    "serve": "vite preview --port 5173",
     "type-check": "tsc",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
     "test": "vitest"
   },
   "dependencies": {
