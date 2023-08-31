@@ -3,6 +3,7 @@ import './App.css'
 import DoorFrontIcon from '@mui/icons-material/DoorFront'
 import Man4Icon from '@mui/icons-material/Man4'
 import NoMeetingRoomIcon from '@mui/icons-material/NoMeetingRoom'
+import RotateLeftIcon from '@mui/icons-material/RotateLeft'
 import WomanIcon from '@mui/icons-material/Woman'
 import React, { useEffect } from 'react'
 
@@ -25,8 +26,17 @@ function App() {
   useEffect(() => {
     fetchSections().then((sections) => setSections(sections))
   }, [])
+
+  const hanleReload = () => {
+    location.reload()
+  }
   return (
     <div className="App" data-testid="app-page">
+      <RotateLeftIcon
+        className="reload"
+        sx={{ fontSize: 70 }}
+        onClick={hanleReload}
+      />
       <h2 className="title">
         シャワーの使用状況 <br /> Shower Room Status
       </h2>

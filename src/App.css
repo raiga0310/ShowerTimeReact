@@ -9,6 +9,16 @@
   text-align: center;
 }
 
+.App .reload {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  border-radius: 0.2em;
+  border-color: darkblue;
+  padding: 0.2em;
+  box-shadow: 0.05em 0.05em 0.05em darkblue;
+}
+
 .App .section-container {
   display: flex;
   flex: 5 3;

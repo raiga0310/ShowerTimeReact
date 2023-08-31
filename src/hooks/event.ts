@@ -19,9 +19,7 @@ export function useEventSource() {
 
       eventSource.onerror = function (event) {
         console.log('error: ', event)
-        //reconnect
-        eventSource.close()
-        connectToEventSource(eventSourceUrl)
+        location.reload()
       }
 
       eventSourceRef.current = eventSource
